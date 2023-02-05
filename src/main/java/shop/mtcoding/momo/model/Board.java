@@ -1,4 +1,4 @@
-package shop.mtcoding.blog.model;
+package shop.mtcoding.momo.model;
 
 import java.sql.Timestamp;
 
@@ -7,10 +7,10 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class User {
+public class Board {
     private int id;
-    private String username;
-    private String password;
-    private String email;
+    private String title;
+    private String content;
+    private int userId;
     private Timestamp createdAt;
 }

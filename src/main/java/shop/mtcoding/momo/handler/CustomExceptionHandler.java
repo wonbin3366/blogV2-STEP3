@@ -10,6 +10,7 @@ import shop.mtcoding.momo.util.Script;
 @RestControllerAdvice
 public class CustomExceptionHandler {
 
+    // NullPointException <- RuntimeException
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<?> customException(CustomException e) {
         String responseBody = Script.back(e.getMessage());

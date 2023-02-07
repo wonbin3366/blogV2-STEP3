@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.momo.dto.board.BoardResp;
+import shop.mtcoding.momo.dto.board.BoardResp.BoardDetailRespDto;
 import shop.mtcoding.momo.model.User;
 
 // @AutoConfigureMockMvc 웹 애플리케이션에서 컨트롤러를 테스트 할 때, 서블릿 컨테이너를 모킹하기 위해
@@ -89,5 +90,25 @@ public class BoardControllerTest {
         assertThat(dtos.size()).isEqualTo(6);
         assertThat(dtos.get(0).getUsername()).isEqualTo("ssar");
         assertThat(dtos.get(0).getTitle()).isEqualTo("1번째 제목");
+    }
+
+    @Test
+    public void detail_test() throws Exception {
+        // given
+        int id = 1;
+
+        // when
+        ResultActions resultActions = mvc.perform(get("/board/" + id));
+        Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
+        BoardDetailRespDto dto = (BoardDetailRespDto) map.get("dto");
+        String model = om.writeValueAsString(dto);
+        System.out.println("테스트 : " + model);
+
+        // then
+
+        resultActions.andExpect(status().isOk());
+        assertThat(dto.getUserId()).isEqualTo(1);
+        assertThat(dto.getUsername()).isEqualTo("ssar");
+        assertThat(dto.getTitle()).isEqualTo("1번째 제목");
     }
 }

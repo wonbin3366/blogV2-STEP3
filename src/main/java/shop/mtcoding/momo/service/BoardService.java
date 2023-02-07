@@ -1,14 +1,18 @@
 package shop.mtcoding.momo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.momo.dto.board.BoardReq.BoardSaveReqDto;
+import shop.mtcoding.momo.dto.board.BoardResp.BoardMainRespDto;
 import shop.mtcoding.momo.handler.ex.CustomException;
 import shop.mtcoding.momo.model.BoardRepository;
 
+@Transactional(readOnly = true)
 @Service
 public class BoardService {
 
@@ -24,4 +28,5 @@ public class BoardService {
         }
         return 1;
     }
+
 }

@@ -22,7 +22,14 @@ public class BoardService {
     // where 절에 걸리는 파라미터를 앞에 받기
     @Transactional
     public int 글쓰기(BoardSaveReqDto boardSaveReqDto, int userId) {
-        int result = boardRepository.insert(boardSaveReqDto.getTitle(), boardSaveReqDto.getContent(), userId);
+
+        // 1. content 내용을 Document로 받고 , img 찾아내서(0,1,2) src를찾아서 thumbnail에 추가
+
+        int result = boardRepository.insert(
+                boardSaveReqDto.getTitle(),
+                boardSaveReqDto.getContent(),
+                null,
+                userId);
         if (result != 1) {
             throw new CustomException("글쓰기 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }

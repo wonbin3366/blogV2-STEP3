@@ -3,12 +3,13 @@
     <%@ include file="../layout/header.jsp" %>
 
         <div class="container my-3">
-                <div class="mb-3">
-                    <a href="/board/1/updateForm" class="btn btn-warning">수정</a>
+                
+            <c:if test="${dto.userId == principal.id}">
+            <div class="mb-3">
+                    <a href="/board/${dto.id}/updateForm" class="btn btn-warning">수정</a>
                     <button onClick="deleteById(${dto.id})" class="btn btn-danger">삭제</button>
                 </div>
-            <%-- <c:if test="${dto.userId == principal.id}">
-            </c:if> --%>
+            </c:if>
 
             <script>
                 function deleteById(id) {

@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,6 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import shop.mtcoding.momo.dto.board.BoardResp;
+import shop.mtcoding.momo.dto.board.BoardReq.BoardUpdateReqDto;
 import shop.mtcoding.momo.dto.board.BoardResp.BoardDetailRespDto;
 import shop.mtcoding.momo.model.User;
 
@@ -46,6 +48,26 @@ public class BoardControllerTest {
     private MockHttpSession mockSession;
 
     // test는 격리되어야한다
+    @Test
+    public void update_test() throws Exception {
+        // given
+        int id = 1;
+        BoardUpdateReqDto boardUpdateReqDto = new BoardUpdateReqDto();
+        boardUpdateReqDto.setTitle("제목1-수정");
+        boardUpdateReqDto.setContent("내용1-수정");
+
+        String requestBody = om.writeValueAsString(boardUpdateReqDto);
+        System.out.println("테스트 : " + requestBody);
+        // when
+        ResultActions resultActions = mvc.perform(put("/board/" + id)
+                .content(requestBody)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .session(mockSession));
+
+        // then
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.code").value(1));
+    }
 
     @BeforeEach // Test 메서드 실행 직전에 호출됨
     public void setUp() {

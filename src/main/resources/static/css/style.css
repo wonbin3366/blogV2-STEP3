@@ -3,3 +3,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.card-body {
+    background-color: #ddffff;
+    border-radius: 20px;
+}

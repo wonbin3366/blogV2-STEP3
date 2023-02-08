@@ -22,6 +22,7 @@ import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,6 +32,7 @@ import shop.mtcoding.momo.model.User;
 
 // @AutoConfigureMockMvc 웹 애플리케이션에서 컨트롤러를 테스트 할 때, 서블릿 컨테이너를 모킹하기 위해
 // @SpringBootTest가 하는 역할은 @SpringBootApplication을 찾아서 테스트를 위한 빈들을 다 생성한다. 그리고 @MockBean으로 정의된 빈을 찾아서 교체한다.
+@Transactional // 메서드 실행 직후 롤백!! //auto_increment 초기화안됨
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 public class BoardControllerTest {
@@ -42,6 +44,8 @@ public class BoardControllerTest {
     private ObjectMapper om;
 
     private MockHttpSession mockSession;
+
+    // test는 격리되어야한다
 
     @BeforeEach // Test 메서드 실행 직전에 호출됨
     public void setUp() {

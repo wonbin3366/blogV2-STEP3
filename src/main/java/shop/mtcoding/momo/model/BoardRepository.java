@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import shop.mtcoding.momo.dto.board.BoardResp;
 import shop.mtcoding.momo.dto.board.BoardResp.BoardDetailRespDto;
 import shop.mtcoding.momo.dto.board.BoardResp.BoardMainRespDto;
 

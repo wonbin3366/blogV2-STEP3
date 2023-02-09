@@ -38,6 +38,20 @@ public class HtmlParseTest {
     }
 
     @Test
+    public void jsoup_test3() throws Exception {
+        System.out.println("=============================");
+        String a = "https://www.inflearn.com/courses/it-programming";
+        Document doc = Jsoup.connect(a).get();
+
+        Elements newsHeadlines = doc.select("div.card-content > div.course_title");
+
+        for (int i = 0; i < newsHeadlines.size(); i++) {
+            final String title = newsHeadlines.get(i).text();
+            System.out.println("강의제목 :" + title);
+        }
+    }
+
+    @Test
     public void parse_test1() {
         String html = "<p>1</p><p><img src=\"data:image/png;base64,iVBORw0KG\"></p>";
         String tag = parseEL(html, "img");

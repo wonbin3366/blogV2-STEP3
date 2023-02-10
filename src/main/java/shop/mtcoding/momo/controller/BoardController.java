@@ -126,4 +126,10 @@ public class BoardController {
 
         return new ResponseEntity<>(new ResponseDto<>(1, "게시글수정성공", null), HttpStatus.OK);
     }
+
+    @PostMapping("/juso")
+    public @ResponseBody String callback(String roadFullAddr) {
+        System.out.println("도로명 주소 :" + roadFullAddr);
+        return "ok";
+    }
 }

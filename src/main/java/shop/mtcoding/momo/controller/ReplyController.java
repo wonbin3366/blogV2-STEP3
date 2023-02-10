@@ -7,9 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import lombok.Getter;
-import lombok.Setter;
-import shop.mtcoding.momo.handler.ex.CustomApiException;
+import shop.mtcoding.momo.dto.reply.ReplyReq.ReplySaveReqDto;
 import shop.mtcoding.momo.handler.ex.CustomException;
 import shop.mtcoding.momo.model.User;
 import shop.mtcoding.momo.service.ReplyService;
@@ -25,8 +23,7 @@ public class ReplyController {
 
     // where절에안걸리면 주소에안쓴다 ex>{id}
     @PostMapping("/reply")
-    public String save(ReplySavaReqDto replySaveReqDto) {
-        // 댓글1, 1
+    public String save(ReplySaveReqDto replySaveReqDto) {
         User principal = (User) session.getAttribute("principal");
         if (principal == null) {
             throw new CustomException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
@@ -43,10 +40,4 @@ public class ReplyController {
         return "redirect:/board/" + replySaveReqDto.getBoardId();
     }
 
-    @Setter
-    @Getter
-    public static class ReplySavaReqDto {
-        private String comment;
-        private Integer boardId;
-    }
 }

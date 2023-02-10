@@ -22,6 +22,7 @@ import shop.mtcoding.momo.handler.ex.CustomApiException;
 import shop.mtcoding.momo.handler.ex.CustomException;
 import shop.mtcoding.momo.model.Board;
 import shop.mtcoding.momo.model.BoardRepository;
+import shop.mtcoding.momo.model.ReplyRepository;
 import shop.mtcoding.momo.model.User;
 import shop.mtcoding.momo.service.BoardService;
 
@@ -36,6 +37,9 @@ public class BoardController {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
 
     // 임시
     // private void mockSession(){
@@ -83,7 +87,8 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String detail(@PathVariable int id, Model model) {
-        model.addAttribute("dto", boardRepository.findByIdWithUser(id));
+        model.addAttribute("boardDto", boardRepository.findByIdWithUser(id));
+        model.addAttribute("replyDtos", replyRepository.findByBoardIdWithUser(id));
         return "board/detail";
     }
 

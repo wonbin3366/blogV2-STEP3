@@ -32,3 +32,4 @@
 ###기술블로그
 -회원가입 (주소)
 -로그인(https://github.com/wonbin3366/blogv2.git)
+-2단계(https://github.com/wonbin3366/blogv2-STEP2.git)

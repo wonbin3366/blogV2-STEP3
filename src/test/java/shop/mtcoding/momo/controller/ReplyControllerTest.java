@@ -1,5 +1,6 @@
 package shop.mtcoding.momo.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -66,5 +67,18 @@ public class ReplyControllerTest {
 
         // then
         resultActions.andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    public void deleteReply_test() throws Exception {
+        // given
+        int id = 1;
+
+        // when
+        ResultActions resultActions = mvc.perform(
+                delete("/reply/" + id).session(mockSession));
+
+        // then
+        resultActions.andExpect(status().isOk());
     }
 }

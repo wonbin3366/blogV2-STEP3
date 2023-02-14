@@ -20,7 +20,7 @@
 
         <body>
 
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <nav class="navbar navbar-expand-sm bg-warning navbar-dark">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="/">Blog</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -54,7 +54,7 @@
                             </c:choose>
                         </ul>
                         <div>
-                            <a href="/user/profileUpdateForm"><img src="/images/a.jpg" style="width: 35px;"
+                            <a href="/user/profileUpdateForm"><img src="${principal.profile == null ? '/images/profile.jfif' : principal.profile}" style="width: 35px;"
                                     class="rounded-circle" alt="Cinque Terre"></a>
                         </div>
                     </div>

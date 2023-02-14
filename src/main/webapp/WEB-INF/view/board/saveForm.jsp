@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <textarea class="form-control summernote" rows="5" id="content" name="content"></textarea>
                 </div>
-                <button type="button" onclick="save()" class="btn btn-primary">글쓰기완료</button>
+                <button type="button" onclick="save()" class="btn btn-warning">글쓰기완료</button>
             </form>
         </div>
 

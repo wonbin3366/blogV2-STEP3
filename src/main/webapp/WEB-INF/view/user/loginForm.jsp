@@ -15,7 +15,7 @@
                             id="password">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">로그인</button>
+                    <button type="submit" class="btn btn-warning">로그인</button>
                 </form>
 
             </div>

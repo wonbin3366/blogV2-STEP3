@@ -20,7 +20,7 @@
                             value="ssar@nate.com">
                     </div>
 
-                    <button type="button" class="btn btn-primary">회원수정</button>
+                    <button type="button" class="btn btn-warning">회원수정</button>
                 </form>
 
             </div>

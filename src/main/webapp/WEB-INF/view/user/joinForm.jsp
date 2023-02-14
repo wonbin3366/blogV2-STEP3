@@ -25,7 +25,7 @@
                         <input type="email" name="email" class="form-control" placeholder="Enter email" id="email">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">회원가입</button>
+                    <button type="submit" class="btn btn-warning">회원가입</button>
                 </form>
 
             </div>

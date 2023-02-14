@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <div>작성자 : ${dto.username}</div>
                         <h4 class="card-title my-text-ellipsis">${dto.title}</h4>
-                        <a href="/board/${dto.id}" class="btn btn-primary">상세보기</a>
+                        <a href="/board/${dto.id}" class="btn btn-warning">상세보기</a>
                     </div>
                 </div>
         </c:forEach>

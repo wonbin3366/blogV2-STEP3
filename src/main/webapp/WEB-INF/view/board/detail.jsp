@@ -47,7 +47,7 @@
                     let boardId = $("#boardId").val();
                     let id = $("#heart").attr("value");
 
-                    if (id == undefined) {
+                    if (id == undefined || id == "") {
                         // 좋아요 통신 요청 (POST)
                         let data = {
                             boardId: boardId

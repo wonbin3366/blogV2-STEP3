@@ -32,6 +32,7 @@ import shop.mtcoding.momo.dto.board.BoardReq.BoardUpdateReqDto;
 import shop.mtcoding.momo.dto.board.BoardResp;
 import shop.mtcoding.momo.dto.board.BoardResp.BoardDetailRespDto;
 import shop.mtcoding.momo.dto.reply.ReplyResp.ReplyDetailRespDto;
+import shop.mtcoding.momo.model.Love;
 import shop.mtcoding.momo.model.User;
 
 // @AutoConfigureMockMvc 웹 애플리케이션에서 컨트롤러를 테스트 할 때, 서블릿 컨테이너를 모킹하기 위해
@@ -127,14 +128,15 @@ public class BoardControllerTest {
 
         // when
         ResultActions resultActions = mvc.perform(
-                get("/board/" + id));
+                get("/board/" + id).session(mockSession));
         Map<String, Object> map = resultActions.andReturn().getModelAndView().getModel();
         BoardDetailRespDto boardDto = (BoardDetailRespDto) map.get("boardDto");
         List<ReplyDetailRespDto> replyDtos = (List<ReplyDetailRespDto>) map.get("replyDtos");
-        String boardJson = om.writeValueAsString(boardDto);
-        String replyListJson = om.writeValueAsString(replyDtos);
-        System.out.println("테스트 : " + boardJson);
-        System.out.println("테스트 : " + replyListJson);
+        Love loveDto = (Love) map.get("loveDto");
+        // String boardJson = om.writeValueAsString(boardDto);
+        // String replyListJson = om.writeValueAsString(replyDtos);
+        // System.out.println("테스트 : "+boardJson);
+        // System.out.println("테스트 : "+replyListJson);
 
         // then
         resultActions.andExpect(status().isOk());
@@ -143,7 +145,7 @@ public class BoardControllerTest {
         assertThat(boardDto.getTitle()).isEqualTo("1번째 제목");
         assertThat(replyDtos.get(1).getComment()).isEqualTo("댓글3");
         assertThat(replyDtos.get(1).getUsername()).isEqualTo("love");
-
+        assertThat(loveDto.getBoardId()).isEqualTo(1);
     }
 
     @Test
